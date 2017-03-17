@@ -1,0 +1,105 @@
+#:import Toolbar kivymd.toolbar.Toolbar
+#:import ThemeManager kivymd.theming.ThemeManager
+#:import NavigationDrawer kivymd.navigationdrawer.NavigationDrawer
+#:import MDCheckbox kivymd.selectioncontrols.MDCheckbox
+#:import MDSwitch kivymd.selectioncontrols.MDSwitch
+#:import MDList kivymd.list.MDList
+#:import OneLineListItem kivymd.list.OneLineListItem
+#:import TwoLineListItem kivymd.list.TwoLineListItem
+#:import ThreeLineListItem kivymd.list.ThreeLineListItem
+#:import OneLineAvatarListItem kivymd.list.OneLineAvatarListItem
+#:import OneLineIconListItem kivymd.list.OneLineIconListItem
+#:import OneLineAvatarIconListItem kivymd.list.OneLineAvatarIconListItem
+#:import MDTextField kivymd.textfields.MDTextField
+#:import MDSpinner kivymd.spinner.MDSpinner
+#:import MDCard kivymd.card.MDCard
+#:import MDSeparator kivymd.card.MDSeparator
+#:import get_color_from_hex kivy.utils.get_color_from_hex
+#:import colors kivymd.color_definitions.colors
+#:import SmartTile kivymd.grid.SmartTile
+#:import MDSlider kivymd.slider.MDSlider
+#:import MDTabbedPanel kivymd.tabs.MDTabbedPanel
+#:import MDTab kivymd.tabs.MDTab
+#:import MDProgressBar kivymd.progressbar.MDProgressBar
+#:import MDAccordion kivymd.accordion.MDAccordion
+#:import MDAccordionItem kivymd.accordion.MDAccordionItem
+#:import MDAccordionSubItem kivymd.accordion.MDAccordionSubItem
+#:import MDThemePicker kivymd.theme_picker.MDThemePicker
+#:import MDBottomNavigation kivymd.tabs.MDBottomNavigation
+#:import MDBottomNavigationItem kivymd.tabs.MDBottomNavigationItem
+
+
+FloatLayout:
+    orientation: 'horizontal'
+
+    Toolbar:
+        id: toolbar
+        title: 'Simple SNMP App'
+        md_bg_color: app.theme_cls.primary_color
+        background_palette: 'Primary'
+        background_hue: '500'
+        pos_hint: {'x': 0, 'top': 1}
+        left_action_items: [['menu', lambda x: app.nav_drawer.toggle()]]
+
+    MDTextField:
+        id: textinput_ip
+        required: True
+        pos_hint: {'x': .2, 'top': .85}
+        font_size: 12
+        size_hint: .6, .1
+        hint_text: "IP"
+        helper_text: "IPV4"
+        helper_text_mode: "on_focus"
+
+    MDTextField:
+        id: textinput_community
+        pos_hint: {'x': .2, 'top': .75}
+        font_size: 12
+        size_hint: .6, .1
+        hint_text: "Community"
+        helper_text: "PUBLIC or PRIVATE"
+        helper_text_mode: "on_focus"
+
+    MDRaisedButton:
+        text: app.h
+        pos_hint: {'center_x': 0.5, 'top': .63}
+        on_press: app.show_example_snackbar('simple')
+        on_release: app.get_values_form(textinput_ip.text, textinput_community.text)
+        id: btn_start
+        elevation_normal: 2
+        opposite_colors: True
+
+    MDCard:
+        size_hint: None, None
+        size: dp(400), dp(260)
+        pos_hint: {'center_x': 0.5, 'center_y': 0.28}
+        BoxLayout:
+            orientation:'vertical'
+            padding: dp(8)
+            MDLabel:
+                text: 'Resultado'
+                theme_text_color: 'Secondary'
+                font_style:"Title"
+                size_hint_y: None
+                height: dp(30)
+            MDSeparator:
+                height: dp(1)
+            MDLabel:
+                id: textinput_resultado
+                text: ''
+                theme_text_color: 'Secondary'
+
+<KitchenSinkNavDrawer>
+    title: "Suas Opções"
+    NavigationDrawerIconButton:
+        icon: 'exit-to-app'
+        text: "Sair"
+        on_release: app.exit(1)
+#    NavigationDrawerIconButton:
+#        icon: 'checkbox-blank-circle'
+#        text: "Buttons"
+#        on_release: app.root.ids.scr_mngr.current = 'button'
+#    NavigationDrawerIconButton:
+#        icon: 'file-document'
+#        text: "Arquivos"
+#        on_release: app.root.ids.scr_mngr.current = 'card'
