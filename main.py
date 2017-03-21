@@ -44,23 +44,19 @@ class SnmpToolApp(App):
         print resultado
 
     def get_values_form(self, ip, community):
-        a = SimpleSnmp(ip, community)
+        ip,porta = ip.split(":")
+        a = SimpleSnmp(ip, community, porta)
         result = a.GetSNMP()
-        result = result + '\n\nDados processados: '
+        result = result + '\nDados processados: '
         result = result + '\n- IP ' + ip
         result = result + '\n- Community ' + community
+        result = result + '\n- Porta ' + porta
         self.set_result_form(result)
 
     def show_example_snackbar(self, snack_type):
         if snack_type == 'simple':
             Snackbar.make("Processando a requisicao. Aguarde!")
-#        elif snack_type == 'button':
-#            Snackbar.make("This is a snackbar", button_text="with a button!",
-#                          button_callback=lambda *args: 2)
-#        elif snack_type == 'verylong':
-#            Snackbar.make("This is a very very very very very very very long "
-#                          "snackbar!",
-#                          button_text="Hello world")
+
 
 if __name__ == "__main__":
     SnmpToolApp().run()

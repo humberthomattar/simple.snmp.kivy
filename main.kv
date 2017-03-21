@@ -47,8 +47,8 @@ FloatLayout:
         pos_hint: {'x': .2, 'top': .85}
         font_size: 12
         size_hint: .6, .1
-        hint_text: "IP"
-        helper_text: "IPV4"
+        hint_text: "IP e Porta"
+        helper_text: "IPV4 (ex.: 104.236.166.95:161)"
         helper_text_mode: "on_focus"
 
     MDTextField:
@@ -57,7 +57,7 @@ FloatLayout:
         font_size: 12
         size_hint: .6, .1
         hint_text: "Community"
-        helper_text: "PUBLIC or PRIVATE"
+        helper_text: "public or private"
         helper_text_mode: "on_focus"
 
     MDRaisedButton:
@@ -94,12 +94,4 @@ FloatLayout:
     NavigationDrawerIconButton:
         icon: 'exit-to-app'
         text: "Sair"
-        on_release: app.exit(1)
-#    NavigationDrawerIconButton:
-#        icon: 'checkbox-blank-circle'
-#        text: "Buttons"
-#        on_release: app.root.ids.scr_mngr.current = 'button'
-#    NavigationDrawerIconButton:
-#        icon: 'file-document'
-#        text: "Arquivos"
-#        on_release: app.root.ids.scr_mngr.current = 'card'
+        on_release: app.exit(-1)
