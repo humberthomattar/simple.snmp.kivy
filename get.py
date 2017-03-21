@@ -1,6 +1,5 @@
 from pysnmp.hlapi import *
 from os import *
-import oid
 
 class SimpleSnmp():
     try:
